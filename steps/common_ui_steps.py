@@ -1,6 +1,7 @@
 from behave import given, then, when, step
 from asserts import *
 from pageobjects.add_remove import AddRemovePageObject
+from pageobjects.challenging_dom import ChallengingDomPageObject
 from pageobjects.common import CommonPageObject
 from pageobjects.login import LoginPageObject
 
@@ -12,6 +13,8 @@ def get_element(page_name, element_name):
         el = LoginPageObject().get_element(element_name)
     if page_name.strip().lower() == "add_remove_elements_page":
         el = AddRemovePageObject().get_element(element_name)
+    if page_name.strip().lower() == "challenging_dom":
+        el = ChallengingDomPageObject().get_element(element_name)
     return el
 
 @step('the "{page_name}" page is open with title "{expected_title}"')
@@ -22,3 +25,8 @@ def step_impl(context, page_name="", expected_title=""):
     assert_equal(actual_title,
                  expected_title, 
                  msg_fmt="expected title '{}' is not equal to the actual title '{}'".format(expected_title, actual_title))
+    
+@step('on page "{page_name}" the user clicks the "{element_name}"')
+def step_impl(context, page_name="", element_name=""):
+    el = get_element(page_name, element_name)
+    CommonPageObject().click_element(element_name, el)

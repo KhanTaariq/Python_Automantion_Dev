@@ -25,17 +25,3 @@ class AddRemovePageObject(PageObject):
             self.logger.error('Element "{}" is undefined'.format(element_name))
         else:
             return el
-
-    # def open(self, element_name: str, el: PageElement):
-    #     self.driver.get('{}/add_remove_elements/'.format(self.config.get('Test', 'url')))
-    #     return self
-    
-    # def add_elem(self, element_name: str, el: PageElement):
-    #     self.add_btn.wait_until_visible(el)
-    #     self.add_btn.click()
-    #     return self
-
-    # def delete_elem(self, element_name: str, el: PageElement):
-    #     self.delete_btn.wait_until_visible(el)
-    #     self.delete_btn.click()
-    #     return self

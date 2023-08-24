@@ -1,6 +1,7 @@
 import time
 import pageobjects
 from pageobjects.add_remove import AddRemovePageObject
+from pageobjects.challenging_dom import ChallengingDomPageObject
 from pageobjects.login import LoginPageObject
 from toolium.pageelements import *
 from toolium.pageobjects.page_object import PageObject
@@ -16,7 +17,8 @@ class CommonPageObject(PageObject):
 
         switcher = {
             "login_page": self.config.get('LoginPage', 'url'),
-            "add_remove_elements_page": self.config.get('AddRemovePage', 'url')
+            "add_remove_elements_page": self.config.get('AddRemovePage', 'url'),
+            "challenging_dom": self.config.get('ChallengingDom', 'url')
         }
         url = switcher.get(page_name.strip().lower(), None)
 
@@ -34,7 +36,8 @@ class CommonPageObject(PageObject):
 
         switcher = {
             "login_page": LoginPageObject,
-            "add_remove_elements_page": AddRemovePageObject
+            "add_remove_elements_page": AddRemovePageObject,
+            "challenging_dom": ChallengingDomPageObject 
         }
         page = switcher.get(page_name.strip().lower(), None)
         self.logger.info("title = {}".format(self.driver.title))
